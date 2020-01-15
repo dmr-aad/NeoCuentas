@@ -23,11 +23,12 @@ public class Movimiento {
     public Movimiento() {
     }
 
-    public Movimiento(Date fechaOperacion, Time hora, float cantidad, float saldoAnterior) {
-        this.fecha = fechaOperacion;
+    public Movimiento(Date fecha, Time hora, char operacion, float importe, float saldoRestante) {
+        this.fecha = fecha;
         this.hora = hora;
-        this.importe = cantidad;
-        this.saldoRestante = saldoAnterior;
+        this.operacion = operacion;
+        this.importe = importe;
+        this.saldoRestante = saldoRestante;
     }
 
     public Date getFecha() {

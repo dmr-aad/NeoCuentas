@@ -25,6 +25,24 @@ public class Menu {
         return opcion;
     }
     
+    public static int tipo(BufferedReader lee) throws IOException {
+        int opcion;
+        System.out.println("Elija una opción:");
+        System.out.println("1. Cuenta Corriente");
+        System.out.println("2. Cuenta Plazo");
+        opcion = Integer.parseInt(lee.readLine());
+        return opcion;
+    }
+    
+    public static int tipoOperacion(BufferedReader lee) throws IOException {
+        int opcion;
+        System.out.println("Seleccione el tipo de operación:");
+        System.out.println("1. Ingreso");
+        System.out.println("2. Retirada");
+        opcion = Integer.parseInt(lee.readLine());
+        return opcion;
+    }
+    
     public static int opcion(BufferedReader lee, String texto) throws IOException {
         int opcion;
         System.out.println(texto);
