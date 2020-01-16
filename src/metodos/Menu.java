@@ -30,6 +30,7 @@ public class Menu {
         System.out.println("***ALTAS***");
         System.out.println("* 1. Cuenta Corriente");
         System.out.println("* 2. Cuenta Plazo");
+        System.out.println("* 3. Movimiento");
         opcion = Integer.parseInt(lee.readLine());
         return opcion;
     }
@@ -39,8 +40,8 @@ public class Menu {
         char tipo = 'A';
         do {            
             System.out.println("Seleccione el tipo de operación:");
-            System.out.println("1. Ingreso");
-            System.out.println("2. Retirada");
+            System.out.println("* 1. Ingreso");
+            System.out.println("* 2. Retirada");
             opcion = Integer.parseInt(lee.readLine());
             if (opcion == 1) {
                 tipo =  'I';
@@ -54,8 +55,8 @@ public class Menu {
     public static int opcion(BufferedReader lee, String texto) throws IOException {
         int opcion;
         System.out.println(texto);
-        System.out.println("1. Si");
-        System.out.println("2. No");
+        System.out.println("* 1. Si");
+        System.out.println("* 2. No");
         opcion = Integer.parseInt(lee.readLine());
         return opcion;
     }
