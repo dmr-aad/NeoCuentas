@@ -34,7 +34,7 @@ public class Altas {
         CuentaCorriente cc = null;
         Movimiento m = null;
         IQuery query = null;
-        
+
         c = cargarCliente(lee);
 
         if (c != null) {
@@ -44,28 +44,28 @@ public class Altas {
 
             System.out.println("Introduce una sucursal");
             String sucursal = lee.readLine();
-            
+
             System.out.println("Introduce una cantidad");
             float cantidad = Float.parseFloat(lee.readLine());
-            
+
             Date fecha = new Date();
             Time hora = new Time(System.currentTimeMillis());
-            
+
             char operacion = 'I';
             float importe = cantidad;
             float saldoResultante = importe;
-            
+
             cc = new CuentaCorriente(cuenta, sucursal, cantidad);
             m = new Movimiento(fecha, hora, operacion, importe, saldoResultante);
             cc.getMovimientos().add(m);
             m.setCuenta(cc);
-            
+
             odb.store(cc);
             odb.store(m);
         }
         odb.close();
     }
-    
+
     public static void cuentaPlazo(BufferedReader lee) throws IOException {
         ODB odb = ODBFactory.openClient("localhost", 8000, "NeoCuentas.db");
 
@@ -73,7 +73,7 @@ public class Altas {
         CuentaPlazo cp = null;
         Movimiento m = null;
         IQuery query = null;
-        
+
         c = cargarCliente(lee);
 
         if (c != null) {
@@ -83,74 +83,71 @@ public class Altas {
 
             System.out.println("Introduce una sucursal");
             String sucursal = lee.readLine();
-            
+
             System.out.println("Introduce una cantidad");
             float cantidad = Float.parseFloat(lee.readLine());
-            
+
             System.out.println("Introduzca los intereses");
             int intereses = Integer.parseInt(lee.readLine());
-            
+
             System.out.println("Introduce la fecha de vencimiento");
             String fecha = lee.readLine();
-            
+
             float depositoPlazo = cantidad;
-            
+
             cp = new CuentaPlazo(cuenta, sucursal, cantidad, intereses, fecha, depositoPlazo);
-            
+
             odb.store(cp);
         }
         odb.close();
     }
-    
+
     public static void movimiento(BufferedReader lee) throws IOException {
         ODB odb = ODBFactory.openClient("localhost", 8000, "NeoCuentas.db");
         Movimiento m = null;
-        
+
         CuentaCorriente cc = cargarCuentaCorriente(lee);
         if (cc != null) {
             Date fecha = new Date();
             Time hora = new Time(System.currentTimeMillis());
-            
-            char operacion;
+
             float saldoRestante = (float) cc.getSaldoActual(), importe;
-            do {                
-                System.out.println("Introduce el tipo de operación");
-                operacion = lee.readLine().toUpperCase().charAt(0);
-                
-                System.out.println("Introduce el importe");
-                importe = Float.parseFloat(lee.readLine());
-                
-                if (operacion == 'I') {
-                    saldoRestante = (float) cc.getSaldoActual() + importe;
-                } else if (operacion == 'R') {
-                    saldoRestante = (float) cc.getSaldoActual() - importe;
-                } else {
-                    System.out.println("Operación no válida");
-                }
-            } while (operacion != 'I' && operacion != 'R');
-            
+
+            char operacion = Menu.tipoOperacion(lee);
+
+            System.out.println("Introduce el importe");
+            importe = Float.parseFloat(lee.readLine());
+
+            if (operacion == 'I') {
+                saldoRestante = (float) cc.getSaldoActual() + importe;
+            } else if (operacion == 'R') {
+                saldoRestante = (float) cc.getSaldoActual() - importe;
+            } else {
+                System.out.println("Operación no válida");
+            }
+
             m = new Movimiento(fecha, hora, operacion, importe, saldoRestante);
             cc.getMovimientos().add(m);
-            
+
             odb.store(cc);
             odb.store(m);
         }
         odb.close();
     }
-    
+
     public static CuentaCorriente cargarCuentaCorriente(BufferedReader lee) throws IOException {
         ODB odb = ODBFactory.openClient("localhost", 8000, "NeoCuentas.db");
         CuentaCorriente cc = null;
         System.out.println("Introduce tu numero de cuenta (0 para salir)");
         int ncuenta = Integer.parseInt(lee.readLine());
-        
+
         if (ncuenta != 0) {
-            
+
             //Buscamos si existe la cuenta
             IQuery query = new CriteriaQuery(Cuenta.class,
-                Where.equal("numero", ncuenta)).setPolymorphic(true);
+                    Where.equal("numero", ncuenta)).setPolymorphic(true);
             Objects<Cuenta> objects = odb.getObjects(query);
-            
+
             if (!objects.isEmpty()) { //La cuenta existe
                 Cuenta c = (Cuenta) odb.getObjects(query).getFirst();
                 if (c instanceof CuentaCorriente) { //La cuenta es corriente
@@ -171,7 +168,7 @@ public class Altas {
 
             //Buscamos si existe el dni
             IQuery query = new CriteriaQuery(Cliente.class,
-                     Where.equal("dni", dni));
+                    Where.equal("dni", dni));
             Objects<Cliente> objects = odb.getObjects(query);
 
             if (objects.isEmpty()) { //No existe dni
