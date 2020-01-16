@@ -15,7 +15,7 @@ import java.io.IOException;
 public class Menu {
     public static int main(BufferedReader lee) throws IOException {
         int opcion;
-        System.out.println("***MENU JUGADORES***");
+        System.out.println("***MENU BANCO***");
         System.out.println("* 1. Altas");
         System.out.println("* 2. Bajas");
         System.out.println("* 3. Modificar");
@@ -25,22 +25,30 @@ public class Menu {
         return opcion;
     }
     
-    public static int tipo(BufferedReader lee) throws IOException {
+    public static int altas(BufferedReader lee) throws IOException {
         int opcion;
-        System.out.println("Elija una opción:");
-        System.out.println("1. Cuenta Corriente");
-        System.out.println("2. Cuenta Plazo");
+        System.out.println("***ALTAS***");
+        System.out.println("* 1. Cuenta Corriente");
+        System.out.println("* 2. Cuenta Plazo");
         opcion = Integer.parseInt(lee.readLine());
         return opcion;
     }
-    
-    public static int tipoOperacion(BufferedReader lee) throws IOException {
+      
+    public static char tipoOperacion(BufferedReader lee) throws IOException {
         int opcion;
-        System.out.println("Seleccione el tipo de operación:");
-        System.out.println("1. Ingreso");
-        System.out.println("2. Retirada");
-        opcion = Integer.parseInt(lee.readLine());
-        return opcion;
+        char tipo = 'A';
+        do {            
+            System.out.println("Seleccione el tipo de operación:");
+            System.out.println("1. Ingreso");
+            System.out.println("2. Retirada");
+            opcion = Integer.parseInt(lee.readLine());
+            if (opcion == 1) {
+                tipo =  'I';
+            } else if (opcion == 2) {
+                tipo =  'R';
+            }
+        } while (opcion != 1 && opcion != 2);
+        return tipo;
     }
     
     public static int opcion(BufferedReader lee, String texto) throws IOException {
