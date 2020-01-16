@@ -26,6 +26,27 @@ import org.neodatis.odb.impl.core.query.criteria.CriteriaQuery;
  * @author a18danielmr
  */
 public class Altas {
+    
+    public static void main(BufferedReader lee) throws IOException {
+        int opcion;
+        do {
+            opcion = Integer.parseInt(lee.readLine());
+            switch (opcion) {
+                case 1:
+                    cuentaCorriente(lee);
+                    break;
+                case 2:
+                    cuentaPlazo(lee);
+                    break;
+                case 3:
+                    movimiento(lee);
+                    break;
+                case 0:
+                    System.out.println("SALIENDO...");
+                    break;
+            }
+        }while(opcion != 0);
+    }
 
     public static void cuentaCorriente(BufferedReader lee) throws IOException {
         ODB odb = ODBFactory.openClient("localhost", 8000, "NeoCuentas.db");
