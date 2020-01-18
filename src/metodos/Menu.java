@@ -19,7 +19,7 @@ public class Menu {
         System.out.println("* 1. Altas");
         System.out.println("* 2. Borrar cuenta plazo");
         System.out.println("* 3. Modificar cuenta plazo");
-        System.out.println("* 4. Consultar clientes (Nombre empieza por C)");
+        System.out.println("* 4. Consultas");
         System.out.println("* 0. Salir");
         opcion = Integer.parseInt(lee.readLine());
         return opcion;
@@ -31,6 +31,20 @@ public class Menu {
         System.out.println("* 1. Cuenta Corriente");
         System.out.println("* 2. Cuenta Plazo");
         System.out.println("* 3. Movimiento");
+        System.out.println("* 0. Salir");
+        opcion = Integer.parseInt(lee.readLine());
+        return opcion;
+    }
+    
+    public static int consultar(BufferedReader lee) throws IOException {
+        int opcion;
+        System.out.println("***CONSULTAS***");
+        System.out.println("* 1. Clientes cuyos nombres empiecen por C");
+        System.out.println("* 2. Clientes con saldo menor a 200.000€ en cuenta corriente");
+        System.out.println("* 3. Número de clientes en números rojos");
+        System.out.println("* 4. Saldo medio de todas las cuentas plazo");
+        System.out.println("* 5. Extracto de movimientos");
+        System.out.println("* 0. Salir");
         opcion = Integer.parseInt(lee.readLine());
         return opcion;
     }
