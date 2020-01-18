@@ -17,9 +17,9 @@ public class Menu {
         int opcion;
         System.out.println("***MENU BANCO***");
         System.out.println("* 1. Altas");
-        System.out.println("* 2. Bajas");
-        System.out.println("* 3. Modificar");
-        System.out.println("* 4. Consultar");
+        System.out.println("* 2. Borrar cuenta plazo");
+        System.out.println("* 3. Modificar cuenta plazo");
+        System.out.println("* 4. Consultar clientes (Nombre empieza por C)");
         System.out.println("* 0. Salir");
         opcion = Integer.parseInt(lee.readLine());
         return opcion;

@@ -9,7 +9,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import metodos.Altas;
+import metodos.Bajas;
 import metodos.Menu;
+import metodos.Modificar;
 
 /**
  *
@@ -30,10 +32,10 @@ public class NeoCuentas {
                     Altas.main(lee);
                     break;
                 case 2:
-                    System.out.println("En construcción");
+                    Bajas.intereses(lee);
                     break;
                 case 3:
-                    System.out.println("En construcción");
+                    Modificar.intereses(lee);
                     break;
                 case 4:
                     System.out.println("En construcción");
