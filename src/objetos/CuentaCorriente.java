@@ -14,7 +14,7 @@ import java.util.Set;
  * @author a18danielmr
  */
 public class CuentaCorriente extends Cuenta{
-    private List movimientos;
+    private List<Movimiento> movimientos;
 
     public CuentaCorriente() {
     }
@@ -24,13 +24,15 @@ public class CuentaCorriente extends Cuenta{
         this.movimientos = new ArrayList<>();
     }
 
-    public List getMovimientos() {
+    public List<Movimiento> getMovimientos() {
         return movimientos;
     }
 
-    public void setMovimientos(List movimientos) {
+    public void setMovimientos(List<Movimiento> movimientos) {
         this.movimientos = movimientos;
     }
+
+    
 
     
 
